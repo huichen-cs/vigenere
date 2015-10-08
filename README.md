@@ -5,6 +5,7 @@ The programs are tested in Octave 3.8.1
 
 Example:
 
+```
 % Assume cipherex.txt is a cipher enciphered using Vigenre cipher
 octave> ciphertext= readline('cipherex.txt');
 octave> computeletterfreq(ciphertext);
@@ -46,7 +47,7 @@ octave> guesskey(ciphertext(6:6:end), 'v');
 % the cipher and see if the plaintext is intelligible. 
 
 octave> char(vigenere(ciphertext, 'ASIMOV', 'd'))
-
+```
 
 
 

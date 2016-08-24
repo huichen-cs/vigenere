@@ -6,31 +6,46 @@ The programs are tested in Octave 3.8.1
 Example:
 
 ```
-% Assume cipherex.txt is a cipher enciphered using Vigenre cipher
-octave> ciphertext= readline('cipherex.txt');
+% Assume ciphertext.txt is a cipher enciphered using a Vigenre cipher. Load the ciphertext.
+octave> ciphertext = readline('ciphertext.txt');
 octave> computeletterfreq(ciphertext);
 
-% Use 1st 1000 characters in the ciphertext to speed up
+% Find common substrings from the ciphertext and determine their gaps
+octave> [idx1st, idx2nd, lensubstr, gaps] = findcommonsubstrings(ciphertext, 'v');
+
+% If you ciphertext is very long, you speed it up using a subset of it. The following is to use 
+% the 1st 1000 characters in the ciphertext to speed up
 octave> [idx1st, idx2nd, lensubstr, gaps] = findcommonsubstrings(ciphertext(1:1000), 'v');
 
-% Found many common substring that has length greater than 6. Yours may vary
-octave> gaps(lensubstr > 6)
+% If you ciphertext is long, you display a subset of common substring information. For instance, 
+% the following finds many common substring that has length greater than 3. Yours may vary
+octave> gaps(lensubstr > 3)
 
 % Provided that the output of the above is as follows, 
 %
 % ans =
-% 216 48 78 138 60 12
+% 30   72
 %
-% Since 6 is longer enough and the greatest common divisor among the above is 6
-% we guess the period of the cipher is 6
+% Exmine all gaps and factors of the gaps, we guess the period of the cipher to be 6
 
 % To confirm the guess, we compute the index of coincidence of the cipher
 octave> computeic(ciphertext)
 
 % Provided that the answer is
-% ans= 0.041854
+% ans= 0.043292
 %
-% We become more confident that the period is 6, then we start guess key
+% Based on the the index of coincidence, we become more confident that the period is 6, 
+% we can try to confirm it by checking on each alphabet's index of coincidences, such as,
+
+octave> computeic(ciphertext(1:6:end))
+octave> computeic(ciphertext(2:6:end))
+octave> computeic(ciphertext(3:6:end))
+octave> computeic(ciphertext(4:6:end))
+octave> computeic(ciphertext(5:6:end))
+octave> computeic(ciphertext(5:6:end))
+
+% Since most of the above indices of conincidences agree with period 6, we can now start 
+% guess key
 
 octave> guesskey(ciphertext(1:6:end), 'v');
 octave> guesskey(ciphertext(2:6:end), 'v');

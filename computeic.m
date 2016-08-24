@@ -15,6 +15,9 @@
 
 %% -*- texinfo -*- 
 %% @deftypefn {Function File} {@var{retval} =} computeic (@var{txt})
+%% 
+%% Compute index of coincidence. @var{txt} must be a string of upper
+%% case English letters.
 %%
 %% @seealso{}
 %% @end deftypefn

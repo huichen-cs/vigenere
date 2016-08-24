@@ -16,6 +16,8 @@
 %% -*- texinfo -*- 
 %% @deftypefn {Function File} {@var{retval} =} readline (@var{filename})
 %%
+%% read a from the given file in @var{filename}
+%%
 %% @seealso{}
 %% @end deftypefn
 
@@ -28,6 +30,6 @@ function [retval] = readline (filename)
         error(['readline(): cannot open ' filename]);
     end
 
-    retval = fgets(fid);
+    retval = fgetl(fid);
     fclose(fid);
 end

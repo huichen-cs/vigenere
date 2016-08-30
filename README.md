@@ -6,9 +6,9 @@ The programs are tested in Octave 3.8.1
 Example:
 
 ```
-% Assume ciphertext.txt is a cipher enciphered using a Vigenre cipher. Load the ciphertext.
+% Assume the content of the ciphertext.txt file is the ciphertext encrypted using a Vigenre cipher. 
+% Load the ciphertext,
 octave> ciphertext = readline('ciphertext.txt');
-octave> computeletterfreq(ciphertext);
 
 % Find common substrings from the ciphertext and determine their gaps
 octave> [idx1st, idx2nd, lensubstr, gaps] = findcommonsubstrings(ciphertext, 'v');
